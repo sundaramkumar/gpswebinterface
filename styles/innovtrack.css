@@ -1,0 +1,256 @@
+body{
+margin:0;
+background-color: #CECEE1;
+}
+
+@font-face {
+  font-family: 'AGLettericaCondensed';
+  src: url('./res/AGLettericaCondensed-Roman.ttf');
+
+}
+.AGLettericaCondensed{
+    font-family:"AGLettericaCondensed",Verdana,Helvetica;
+    font-size:normal;
+    color: #fff;
+}
+
+.footer{
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:10px;
+color:#fff;
+text-align:right;
+}
+.footer .highlight{
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:10px;
+color:#E84700;
+text-align:right;
+}
+
+
+.menuText{
+    font-family:Verdana,Helvetica;
+    font-size:normal;
+    font-weight: bold;
+    font-smooth:auto;
+    color: #fff;
+    text-align:center;
+	cursor:pointer;
+}
+.menuText:hover{
+    font-family:Verdana,Helvetica;
+    font-size:normal;
+    font-weight: bold;
+    font-smooth:auto;
+    color: #FF3300;
+    text-align:center;
+	cursor:pointer;
+}
+.menuTextSelected{
+    font-family:Verdana,Helvetica;
+    font-size:normal;
+    font-weight: bold;
+    font-smooth:auto;
+    color: #FF3300;
+    text-align:center;
+	cursor:default;
+}
+
+.subHeadingText{
+    font-family:Tahoma,Verdana,Helvetica;
+    font-size:18px;
+    font-weight: bold;
+    font-smooth:auto;
+    color: #444E57;
+    text-align:left;
+}
+.contentText{
+    font-family:Tahoma,Verdana,Helvetica;
+    font-size:12px;
+    font-weight: normal;
+    font-smooth:12px;
+    color: #000;
+    text-align:justify;
+}
+.bodyText{
+    font-family:Verdana,Tahoma,Verdana,Helvetica;
+    font-size:12px;
+    font-weight: normal;
+    font-smooth:12px;
+    color: #000;
+    text-align:justify;
+}
+.imageLinks{
+    cursor:pointer;
+}
+.supportText{
+    font-family:Verdana,Tahoma,Helvetica;
+    font-size:16px;
+    font-weight: normal;
+    font-smooth:auto;
+    color: #000;
+    text-align:right;
+}
+.supportHeading{
+    font-family:Verdana,Tahoma,Helvetica;
+    font-size:16px;
+    font-weight: bold;
+    font-smooth:auto;
+    color: #737B83;
+    text-align:right;
+}
+.contactHeading{
+    font-family:Verdana,Tahoma,Helvetica;
+    font-size:16px;
+    font-weight: bold;
+    font-smooth:auto;
+    color: #737B83;
+    /*text-align:right;*/
+}
+.hrline{
+  background: url('../images/hrline.jpg')repeat-x;
+  height: 1px;
+}
+.mail a{
+	color:#272727;
+	text-decoration:none;
+}
+.mail a:hover{
+	color:#272727;
+	text-decoration:underline;
+}
+.address{
+	background:none repeat scroll 0 0 transparent;
+	color:#3788C8;
+	font:bold 13px tahoma,arial;
+	padding:15px 0 0 0;
+}
+.address p {
+	color:#505050;
+	font:11px/18px tahoma,arial;
+	padding:10px 0 0 22px;
+}
+.nameBox{
+	height: 21px;
+	width: 250px;
+	text-align: middle;
+	padding-left:55px;
+	background: url(../images/txtname.png) no-repeat #FFFFFF;
+	BORDER-RIGHT: #85A8D1 1px solid;
+	BORDER-TOP: #85A8D1 1px solid;
+	BORDER-LEFT: #85A8D1 1px solid;
+	BORDER-BOTTOM: #85A8D1 1px solid;
+	font-family: Georgia,Verdana,Arial,Sans-serif,'Times New Roman';
+	font-size: 12px;
+	font-weight: normal;
+	color: #333333;
+	vertical-align:middle;
+}
+
+.phoneBox{
+	height: 21px;
+	width: 250px;
+	text-align: middle;
+	padding-left:55px;
+	background: url(../images/txtphone.png) no-repeat #FFFFFF;
+	BORDER-RIGHT: #85A8D1 1px solid;
+	BORDER-TOP: #85A8D1 1px solid;
+	BORDER-LEFT: #85A8D1 1px solid;
+	BORDER-BOTTOM: #85A8D1 1px solid;
+	font-family: Georgia,Verdana,Arial,Sans-serif,'Times New Roman';
+	font-size: 12px;
+	font-weight: normal;
+	color: #333333;
+	vertical-align:middle;
+}
+
+.countryBox{
+	height: 21px;
+	width: 250px;
+	text-align: middle;
+	padding-left:90px;
+	background: url(../images/lblcountry.png) no-repeat #FFFFFF;
+	BORDER-RIGHT: #85A8D1 1px solid;
+	BORDER-TOP: #85A8D1 1px solid;
+	BORDER-LEFT: #85A8D1 1px solid;
+	BORDER-BOTTOM: #85A8D1 1px solid;
+	font-family: Georgia,Verdana,Arial,Sans-serif,'Times New Roman';
+	font-size: 12px;
+	font-weight: normal;
+	color: #333333;
+	vertical-align:middle;
+}
+
+.emailBox{
+	height: 21px;
+	width: 250px;
+	text-align: middle;
+	padding-left:55px;
+	background: url(../images/txtemail.png) no-repeat #FFFFFF;
+	BORDER-RIGHT: #85A8D1 1px solid;
+	BORDER-TOP: #85A8D1 1px solid;
+	BORDER-LEFT: #85A8D1 1px solid;
+	BORDER-BOTTOM: #85A8D1 1px solid;
+	font-family: Georgia,Verdana,Arial,Sans-serif,'Times New Roman';
+	font-size: 12px;
+	font-weight: normal;
+	color: #333333;
+	vertical-align:middle;
+}
+
+/*.industryBox{
+	height: 21px;
+	width: 250px;
+	text-align: middle;
+	padding-left:90px;
+	background: url(../images/lblindustry.png) no-repeat #FFFFFF;
+	BORDER-RIGHT: #85A8D1 1px solid;
+	BORDER-TOP: #85A8D1 1px solid;
+	BORDER-LEFT: #85A8D1 1px solid;
+	BORDER-BOTTOM: #85A8D1 1px solid;
+	font-family: Georgia,Verdana,Arial,Sans-serif,'Times New Roman';
+	font-size: 12px;
+	font-weight: normal;
+	color: #333333;
+	vertical-align:middle;
+}*/
+.subjectBox{
+	height: 21px;
+	width: 250px;
+	text-align: middle;
+	padding-left:55px;
+	background: url(../images/txtsubject.png) no-repeat #FFFFFF;
+	BORDER-RIGHT: #85A8D1 1px solid;
+	BORDER-TOP: #85A8D1 1px solid;
+	BORDER-LEFT: #85A8D1 1px solid;
+	BORDER-BOTTOM: #85A8D1 1px solid;
+	font-family: Georgia,Verdana,Arial,Sans-serif,'Times New Roman';
+	font-size: 12px;
+	font-weight: normal;
+	color: #333333;
+	vertical-align:middle;
+}
+.messageBox{
+	height: 79px;
+	width: 250px;
+	text-align: middle;
+	padding-left:55px;
+	background: url(../images/txtmessage.png) no-repeat #FFFFFF;
+	BORDER-RIGHT: #85A8D1 1px solid;
+	BORDER-TOP: #85A8D1 1px solid;
+	BORDER-LEFT: #85A8D1 1px solid;
+	BORDER-BOTTOM: #85A8D1 1px solid;
+	font-family: Georgia,Verdana,Arial,Sans-serif,'Times New Roman';
+	font-size: 12px;
+	font-weight: normal;
+	color: #333333;
+	vertical-align:middle;
+}
+
+.more{
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:10px;
+  color:#E84700;
+  text-decoration:underline;
+  cursor:pointer;
+}

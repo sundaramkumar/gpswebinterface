@@ -1,0 +1,37 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+	<title>InnovTrack</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="jquery/jquery.mobile-1.1.1.min.css" />
+	<script src="jquery/jquery-1.7.2.min.js"></script>
+	<script src="jquery/jquery.mobile-1.1.1.min.js"></script>
+	<script>
+	function innovLogin(){
+		if(window.android)
+			window.android.loadNewUrl();
+		else
+			location.href="mapview.php";
+	}
+	</script>
+</head> 
+<body> 
+	<div data-role="page" id="login">
+		<div data-role="header" data-theme="b">
+			<h4>InnovTrack Login</h4>
+		</div>
+		<div data-role="content">
+			<div data-role="fieldcontain">
+				<label for="username">Username </label>
+				<input type="text" name="username" id="username" value=""  /><br>
+				<label for="password">Password </label>
+				<input type="password" name="password" id="password" value=""  /><br><center>
+				<input id="Submit" type="submit" value="Login" data-role="button" data-inline="true" data-theme="b" onClick="innovLogin()"/>
+			</div>	
+		</div>
+		<div data-role="footer">
+			<h4>© InnovMax Technologies</h4>
+		</div>
+	</div> 
+</body>
+</html>

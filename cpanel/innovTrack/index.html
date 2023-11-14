@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+ 
+<head>
+	<META HTTP-EQUIV="REFRESH" CONTENT="5">
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" /> 
+	<title>Innov IVTS</title> 
+	
+	<link rel="stylesheet" href="reset.css" type="text/css" media="screen" title="no title" />
+	<link rel="stylesheet" href="text.css" type="text/css" media="screen" title="no title" />
+	<link rel="stylesheet" href="form.css" type="text/css" media="screen" title="no title" />
+	
+	<link rel="stylesheet" href="grid.css" type="text/css" media="screen" title="no title" />	
+	<link rel="stylesheet" href="layout.css" type="text/css" media="screen" title="no title" />	
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAPDUET0Qt7p2VcSk6JNU1sBSM5jMcmVqUpI7aqV44cW1cEECiThQYkcZUPRJn9vy_TWxWvuLoOfSFBw" type="text/javascript"></script>	
+	
+
+</head> 
+ 
+<body onunload="GUnload()" > 
+
+<div id="wrapper">
+	
+	
+	
+	
+	
+	
+	
+	<div id="content" class="xgrid">
+		
+		<div id="welcome" class="x4">			
+			
+			
+
+
+<center><div id="map" style="width: 1100px; height: 800px;"></div></center>
+
+<script type="text/javascript" >
+
+var map = new GMap2(document.getElementById("map"));
+map.addControl(new GSmallMapControl());
+map.addControl(new GMapTypeControl());
+map.setCenter(new GLatLng(13.048455, 80.24203), 16);
+
+// Download the data in data.xml and load it on the map. The format we
+// expect is:
+// <markers>
+//   <marker lat="37.441" lng="-122.141"/>
+//   <marker lat="37.322" lng="-121.213"/>
+// </markers>
+GDownloadUrl("data.xml", function(data, responseCode) {
+ var xml = GXml.parse(data);
+  var markers = xml.documentElement.getElementsByTagName("marker");
+  for (var i = 0; i < markers.length; i++) 
+ {
+  var point = new GLatLng(parseFloat(markers[i].getAttribute("lat")),
+                          parseFloat(markers[i].getAttribute("lng")));
+       
+  map.addOverlay(new GMarker(point));
+   
+ }
+ 
+});
+
+
+
+var polyline = new GPolyline([new GLatLng(22.4419, 78.1419), new GLatLng(26.4519, 78.1519)], "#cc00cc", 2);
+map.addOverlay(polyline);
+ 
+
+</script>
+			
+		</div> <!-- .x4 -->
+				
+	</div> <!-- #content -->
+	
+	
+	
+</div> <!-- #wrapper -->
+
+</body> 
+ 
+</html>

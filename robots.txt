@@ -1,0 +1,24 @@
+User-agent: *
+Disallow: /images/
+Disallow: /scripts/
+Disallow: /includes/
+Disallow: /cpanel/
+Disallow: /styles/
+Disallow: /photos/
+Disallow: /sadmin/
+Disallow: /myadmin/
+
+User-agent: WebZIP
+Disallow: /
+ 
+User-agent: WinHTTrack
+Disallow: /
+
+User-agent: WinHTTrack Website Copier
+Disallow: /
+
+User-agent: WebTrends
+Disallow: /
+
+User-agent: Yahoo-NewsCrawler
+Disallow:

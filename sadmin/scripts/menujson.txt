@@ -1,0 +1,88 @@
+[{
+    //text:'Reports',
+    //id:'Reports',
+    //expanded: true,
+    //children:[{
+            "id": "Reports/Speed",
+            "text": "Speed",
+            "leaf": true
+        },{
+            "id": "Reports/Fuel",
+            "text": "Fuel",
+            "leaf": true
+        },{
+            "id": "Reports/Temperature",
+            "text": "Temperature",
+            "leaf": true
+        },{
+            "id": "Reports/Mileage",
+            "text": "Mileage",
+            "leaf": true
+        },{
+            "id": "Reports/Alarm",
+            "text": "Alarm",
+            "leaf": true
+        },{
+            "id": "Reports/Engine",
+            "text": "Engine",
+            "leaf": true
+       // }]
+}/*,
+{
+    text:'Manage',
+    id:'Manage',
+    expanded: true,
+    children:[{
+        "id": "Manage/Accounts",
+        "text": "Your Account",
+        "leaf": true
+    },{
+        "id": "Manage/Devices",
+        "text": "Your Devices",
+        "leaf": true
+    },{
+        "id": "Manage/Password",
+        "text": "Change Password",
+        "leaf": true
+    }]
+},
+{
+    text:'Alarm',
+    id:'Alarm',
+    expanded: true,
+    children:[{
+        "id": "Alarm/Engine",
+        "text": "Engine",
+        "leaf": true
+    },{
+        "id": "Alarm/Geofence",
+        "text": "Geo Fence",
+        "leaf": true
+    },{
+        "id": "Alarm/Sleep",
+        "text": "Sleep",
+        "leaf": true
+    },{
+        "id": "Alarm/Sos",
+        "text": "SOS",
+        "leaf": true
+    },{
+        "id": "Alarm/Voltage",
+        "text": "Voltage",
+        "leaf": true
+    }]
+},
+{
+    text:'Geo Fence',
+    id:'Geofence',
+    expanded: true,
+    children:[{
+        "id": "Geofence/Settings",
+        "text": "Settings",
+        "leaf": true
+    },{
+        "id": "Geofence/Geotrace",
+        "text": "Geo Trace",
+        "leaf": true
+    }]
+}*/]

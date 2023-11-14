@@ -1,0 +1,134 @@
+<!DOCTYPE html "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps JavaScript API Example</title>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=AIzaSyCV5Cg1P3zd6Ma-FQhJn7cd6ejH4BluB9M&sensor=true_or_false" type="text/javascript"></script>
+    <script type="text/javascript">
+if ( !Number.prototype.toFixed ) Number.prototype.toFixed = function(fractionDigits)
+{
+   var m = Math.pow(10,fractionDigits);
+   return Math.round(this*m,0)/m;
+}
+//Ex: (12.3456789).toFixed(5);	12.34568
+
+function parseDouble(value){
+  if(typeof value == "string") {
+    value = value.match(/^-?\d*/)[0];
+  }
+
+  return !isNaN(parseInt(value)) ? value * 1 : NaN;
+}
+
+if ( !Number.prototype.toPrecision ) Number.prototype.toPrecision = function(precision)
+{
+
+   var l = Math.floor(Math.log(this)/Math.LN10);
+   var m = Math.pow(10,l + 1 - precision);
+   return Math.round(this/m,0)*m;
+}
+//Ex: (12.3456789).toPrecision(4);  	12.35
+
+function latlon(lat,lon){
+    var strlat = lat;
+    var strlon = lon;
+    
+    strlat1 = strlat.substring(0,2);
+    strlat2 = strlat.substring(2);
+    strla = parseInt(strlat1,10)+(parseFloat(strlat2)/60);
+    
+    
+    strlo1 = strlon.substring(0,3)
+    strlo2 = strlon.substring(3);
+    //alert(parseInt(strlo1,10));
+    //alert(parseFloat(strlo2)/60);
+    strlo = parseInt(strlo1,10)+(parseFloat(strlo2)/60);
+    
+    console.log(strla.toFixed(3) +','+ strlo.toFixed(3) );
+    //console.log(strla.toPrecision(5) +','+ strlo.toPrecision(5) );
+    
+    return (strla.toFixed(3) +','+ strlo.toFixed(3));
+}
+       
+        //latlon('1302.9064','08014.5271')
+        //latlon('1302.9059','08014.5179')
+    //function initialize() {
+    //    if (GBrowserIsCompatible()) {
+    //        var map = new GMap2(document.getElementById("map_canvas"));
+    //        //map.setCenter(new GLatLng(latlon('1302.9117','08014.5169')), 13);
+    //        map.setCenter(new GLatLng(13.048,80.242), 13);
+    //        
+    //        map.setUIToDefault();
+    //    }
+    //    var marker = new google.maps.Marker({
+    //        position: myLatlng, 
+    //        map: map,
+    //        title:"Hello World!"
+    //    });      
+    //  
+    //}
+    MAP_WIDTH = 1020;
+MAP_HEIGHT = 600;
+
+function convert(lat, lon){
+    var y = ((-1 * lat) + 90) * (MAP_HEIGHT / 180);
+    var x = (lon + 180) * (MAP_WIDTH / 360);
+    return {x:x,y:y};
+}
+
+    function initialize(){
+        if (GBrowserIsCompatible()) {
+            var map = new GMap2(document.getElementById("map_canvas"));
+            //map.setCenter(new GLatLng(latlon('1302.9117','08014.5169')), 13);
+            //map.setCenter(new GLatLng(13.0485,80.2419), 13);
+            //map.addOverlay(new GMarker(13.0485,80.2419));            
+            
+            //map.setCenter(new GLatLng(latlon('1302.9117','08014.5169')), 13);
+            map.setCenter(new GLatLng(13.0485,80.2419), 13);
+        map.addControl(new GSmallMapControl());
+        map.addControl(new GMapTypeControl());            
+            
+            
+            //map.addOverlay(new GMarker(13.048,80.242));
+            //plot_point(13.048,80.242)
+            
+
+
+
+        }
+    }
+ 
+//var dot_size = 3;
+//var longitude_shift = 55;   // number of pixels your map's prime meridian is off-center.
+//var x_pos = 54;
+//var y_pos = 19;
+//var map_width = 1020;
+//var map_height = 600;
+//var half_dot = Math.floor(dot_size / 2);
+//function draw_point(x, y) {
+//    dot = '<div style="position:absolute;width:' + dot_size + 'px;height:' + dot_size + 'px;top:' + y + 'px;left:' + x + 'px;background:#00ff00"></div>';
+//    document.body.innerHTML += dot;
+//}
+//function plot_point(lat, lng) {
+//    // Mercator projection
+//
+//    // longitude: just scale and shift
+//    x = (map_width * (180 + lng) / 360) % map_width + longitude_shift;
+//
+//    // latitude: using the Mercator projection
+//    lat = lat * Math.PI / 180;  // convert from degrees to radians
+//    y = Math.log(Math.tan((lat/2) + (Math.PI/4)));  // do the Mercator projection (w/ equator of 2pi units)
+//    y = (map_height / 2) - (map_width * y / (2 * Math.PI)) + y_pos;   // fit it to our map
+//
+//    x -= x_pos;
+//    y -= y_pos;
+//
+//    draw_point(x - half_dot, y - half_dot);
+//}
+    </script>
+  </head>
+  <body onload="initialize()" onunload="GUnload()">
+    <div id="map_canvas" style="width: 500px; height: 300px"></div>
+  </body>
+</html>

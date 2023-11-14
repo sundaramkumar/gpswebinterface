@@ -1,0 +1,23 @@
+{ 
+text: '.',
+children: [{
+    text:'Devices',
+    expanded: true,
+    children:[{
+        text:'Projects',
+        id:'projects',
+		iconCls:'treeleaf',
+        leaf:true
+    },{
+        text:'Clients',
+        id:'clients',
+		iconCls:'treeleaf',
+        leaf:true
+    },{
+        text:'Plots',
+        id:'plots',
+		iconCls:'treeleaf',
+        leaf:true
+    }]
+}]
+}

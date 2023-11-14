@@ -1,0 +1,38 @@
+[       {
+            "id": "Reports/Speed",
+            "text": "Speed",
+            "leaf": true
+        },{
+            "id": "Reports/Fuel",
+            "text": "Fuel",
+            "leaf": true
+        },{
+            "id": "Reports/Temperature",
+            "text": "Temperature",
+            "leaf": true
+        },{
+            "id": "Reports/Mileage",
+            "text": "Mileage",
+            "leaf": true
+        },{
+            "id": "Reports/Alarm",
+            "text": "Alarm",
+            "leaf": true
+        },{
+            "id": "Reports/Engine",
+            "text": "Engine",
+            "leaf": true
+        },{
+            "id": "Manage/Accounts",
+            "text": "Your Account",
+            "leaf": true
+        },{
+            "id": "Manage/Devices",
+            "text": "Your Devices",
+            "leaf": true
+        },{
+            "id": "Manage/Password",
+            "text": "Change Password",
+            "leaf": true
+        }
+]

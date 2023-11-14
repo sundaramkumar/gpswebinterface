@@ -1,0 +1,419 @@
+<html>
+<head>
+<title>Draw Geo Fencing Area</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<!--
+Undocumented feature: www.getlatlon.com/?PLACE zooms straight to that place
+-->
+<style type="text/css">
+body {
+    margin: 0;
+    margin-bottom: 3em;
+    padding: 0;
+    font-family: "Gill sans", sans-serif;
+    background-color: #fff;
+    color: #000;
+}
+div#hd {
+    text-align: center;
+    border-bottom: 2px solid black;
+    position:absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    width:280px;
+    background:#000;
+    z-index:1000;filter:alpha(opacity=60);-moz-opacity:0.6;-khtml-opacity:0.6;opacity:0.6;
+    color:#fff;
+}
+div#hd h1 {
+    margin-bottom: 0;
+    font-size: 1.5em;
+    color:#FF0000;
+}
+p{
+    font-weight: bold;
+    margin-bottom: 0;
+    font-size: 1.5em;
+    color:#fff;
+    font-family: verdana,tahoma,arial;
+    font-size: 11px;
+}
+#lat, #lon, #timezone, #latlon1, #latlon2{
+    margin-bottom: 0;
+    font-size: 1.5em;
+    color:#fff;
+    font-family: verdana,tahoma,arial;
+    font-size: 11px;
+}
+/*div#ft {
+    border-top: 2px solid black;
+}
+div#ft p {
+    swidth: 500px;
+    margin: 1em auto;
+}
+p#builtby {
+    font-size: 0.8em;
+    text-align: right;
+    color: #666;
+}*/
+div#bd {
+    /*position: relative;*/
+}
+div#gmap {
+    width: 100%;
+    height: 100%; /*400px;*/ /* If you change this don't forget to change the crosshair position to match */
+}
+div#crosshair {
+    position: absolute;
+    top: 50%;
+    height: 23px;
+    width: 23px;
+    left: 50%;
+    margin-left: -8px;
+    display: block;
+    background: url('./images/crosshair.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+</style>
+<script src="http://www.google.com/jsapi?key=AIzaSyCtiC-qe7eVo66mhdAMNosaIJ-z-tYVt2I" type="text/javascript"></script>
+<!--script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=AIzaSyCtiC-qe7eVo66mhdAMNosaIJ-z-tYVt2I" type="text/javascript"></script-->
+<script type="text/javascript">
+google.load('maps', '2'); // Load version 2 of the Maps API
+
+function timezoneLoaded(obj) {
+    var timezone = obj.timezoneId;
+    if (!timezone) {
+        return;
+    }
+    document.getElementById('timezone').innerHTML = timezone;
+    document.getElementById('timezonep').style.display = 'block';
+    // Find out what time it is there
+    var s = document.createElement('script');
+    s.src = "http://json-time.appspot.com/time.json?callback=timeLoaded&tz=" + timezone;
+    s.type = 'text/javascript';
+    document.getElementsByTagName('head')[0].appendChild(s);
+}
+
+function timeLoaded(obj) {
+    if (obj.datetime) {
+        document.getElementById('datetime').innerHTML = obj.datetime;
+        document.getElementById('datetimep').style.display = 'none'; /*block*/
+    }
+}
+
+function setPoint1(){
+    var center = gmap.getCenter();
+    document.getElementById("lat").innerHTML = center.lat();
+    document.getElementById("lon").innerHTML = center.lng();
+
+    document.getElementById("latlon1").innerHTML = center.lat() + ","+ center.lng();
+    document.getElementById("latlon1_Hid").value = center.lat() + ","+ center.lng();
+}
+
+
+function setPoint2(){
+    var center = gmap.getCenter();
+    document.getElementById("lat").innerHTML = center.lat();
+    document.getElementById("lon").innerHTML = center.lng();
+
+    document.getElementById("latlon2").innerHTML = center.lat() + ","+ center.lng();
+    document.getElementById("latlon2_Hid").value = center.lat() + ","+ center.lng();
+}
+function setPoint3(){
+    var center = gmap.getCenter();
+    document.getElementById("lat").innerHTML = center.lat();
+    document.getElementById("lon").innerHTML = center.lng();
+
+    document.getElementById("latlon3").innerHTML = center.lat() + ","+ center.lng();
+    document.getElementById("latlon3_Hid").value = center.lat() + ","+ center.lng();
+}
+function setPoint4(){
+    var center = gmap.getCenter();
+    document.getElementById("lat").innerHTML = center.lat();
+    document.getElementById("lon").innerHTML = center.lng();
+
+    document.getElementById("latlon4").innerHTML = center.lat() + ","+ center.lng();
+    document.getElementById("latlon4_Hid").value = center.lat() + ","+ center.lng();
+}
+
+function drawFencing(){
+    alert(document.getElementById("latlon1_Hid").value +'\n'+document.getElementById("latlon2_Hid").value +'\n'+document.getElementById("latlon3_Hid").value +'\n'+document.getElementById("latlon4_Hid").value);
+    var val1Str = document.getElementById("latlon1_Hid").value.split(",");
+    var val2Str = document.getElementById("latlon2_Hid").value.split(",");
+    var val3Str = document.getElementById("latlon3_Hid").value.split(",");
+    var val4Str = document.getElementById("latlon4_Hid").value.split(",");
+
+    var lat1 = val1Str[0];
+    var lon1 = val1Str[1];
+
+    var lat2 = val2Str[0];
+    var lon2 = val2Str[1];
+
+    var lat3 = val3Str[0];
+    var lon3 = val3Str[1];
+
+    var lat4 = val4Str[0];
+    var lon4 = val4Str[1];
+
+    var pts = [];
+
+    pts[0] = new GLatLng( parseFloat(lat1),parseFloat(lon1) );
+    pts[1] = new GLatLng( parseFloat(lat2),parseFloat(lon2) );
+    pts[2] = new GLatLng( parseFloat(lat3),parseFloat(lon3) );
+    pts[3] = new GLatLng( parseFloat(lat4),parseFloat(lon4) );
+    pts[4] = new GLatLng( parseFloat(lat1),parseFloat(lon1) );
+    
+    var poly = new GPolygon(pts,"#000000",1,1,"#00ffff",0.5,{clickable:false});
+
+                  gmap.clearOverlays();
+                  gmap.addOverlay(poly);
+        /*
+        var latOffset = 0.01;
+        var lonOffset = 0.01;
+
+        var lat =
+
+        var polygon = new GPolygon([
+            new GLatLng(lat, lon - lonOffset),
+            new GLatLng(lat + latOffset, lon),
+            new GLatLng(lat, lon + lonOffset),
+            new GLatLng(lat - latOffset, lon),
+            new GLatLng(lat, lon - lonOffset)
+		], "#f33f00", 5, 1, "#ff0000", 0.2);
+		  map.addOverlay(polygon);
+        });*/
+
+}
+
+function updateLatLonFields(lat, lon) {
+    //document.getElementById("latlon").innerHTML = lat + ', ' + lon;
+    //document.getElementById("wkt").innerHTML = 'POINT('+lon+' '+lat +')';
+
+    document.getElementById("lat").innerHTML = lat ;
+    document.getElementById("lon").innerHTML = lon ;
+}
+
+function getOSMMapType() {
+    // Usage: map.addMapType(getOSMMapType());
+    var copyright = new GCopyrightCollection(
+        '<a href="http://www.openstreetmap.org/">OpenStreetMap</a>'
+    );
+    copyright.addCopyright(
+        new GCopyright(1, new GLatLngBounds(
+            new GLatLng(-90, -180),
+            new GLatLng(90, 180)
+        ), 0, ' ')
+    );
+    var tileLayer = new GTileLayer(copyright, 1, 18, {
+        tileUrlTemplate: 'http://tile.openstreetmap.org/{Z}/{X}/{Y}.png',
+        isPng: false
+    });
+    var mapType = new GMapType(
+        [tileLayer], G_NORMAL_MAP.getProjection(), 'OSM'
+    );
+    return mapType;
+}
+
+function showMap() {
+    window.gmap = new google.maps.Map2(document.getElementById('gmap'));
+    gmap.addControl(new google.maps.LargeMapControl());
+    gmap.addControl(new google.maps.MapTypeControl());
+    gmap.addMapType(getOSMMapType());
+    gmap.enableContinuousZoom();
+    gmap.enableScrollWheelZoom();
+
+    var timer = null;
+
+    google.maps.Event.addListener(gmap, "move", function() {
+        var center = gmap.getCenter();
+        updateLatLonFields(center.lat(), center.lng());
+
+        // Wait a second, then figure out the timezone
+        if (timer) {
+            clearTimeout(timer);
+            timer = null;
+        }
+        timer = setTimeout(function() {
+            document.getElementById('timezonep').style.display = 'none';
+            document.getElementById('datetimep').style.display = 'none';
+            // Look up the timezone using geonames
+            var s = document.createElement('script');
+            s.type = 'text/javascript';
+            s.src = "http://ws.geonames.org/timezoneJSON?lat=" + center.lat() +
+                "&lng=" + center.lng() + "&callback=timezoneLoaded";
+            document.getElementsByTagName("head")[0].appendChild(s);
+        }, 1500);
+
+    });
+    google.maps.Event.addListener(gmap, "zoomend", function(oldZoom, newZoom) {
+        document.getElementById("zoom").innerHTML = newZoom;
+    });
+    google.maps.Event.addDomListener(document.getElementById('crosshair'),
+        'dblclick', function() {
+            gmap.zoomIn();
+        }
+    );
+    google.maps.Event.addListener(gmap, 'click', function(event) {
+        placeMarker(Event.latLng);
+    });
+
+
+
+
+
+    // Default view of the world
+    gmap.setCenter(
+        new google.maps.LatLng(13.049065452091314, 80.24205923080444),16 //43.834526782236814, -37.265625), 3
+    );
+
+    /* If we have a best-guess for the user's location based on their IP,
+       show a "zoom to my location" link */
+    if (google.loader.ClientLocation) {
+        var link = document.createElement('a');
+        link.onclick = function() {
+            gmap.setCenter(
+                new google.maps.LatLng(
+                    google.loader.ClientLocation.latitude,
+                    google.loader.ClientLocation.longitude
+                ), 8
+            );
+            return false;
+        }
+        link.href = '#'
+        link.appendChild(
+            document.createTextNode('Zoom to my location (by IP)')
+        );
+        var form = document.getElementById('geocodeForm');
+        var p = form.getElementsByTagName('p')[0];
+        p.appendChild(link);
+    }
+
+    // Set up Geocoder
+    window.geocoder = new google.maps.ClientGeocoder();
+
+    // If query string was provided, geocode it
+    var bits = window.location.href.split('?');
+    if (bits[1]) {
+        var location = decodeURI(bits[1]);
+        document.getElementById('geocodeInput').value = location;
+        geocode(location);
+    }
+
+    // Set up the form
+    var geocodeForm = document.getElementById('geocodeForm');
+    geocodeForm.onsubmit = function() {
+        geocode(document.getElementById('geocodeInput').value);
+        return false;
+    }
+}
+
+var accuracyToZoomLevel = [
+    1,  // 0 - Unknown location
+    5,  // 1 - Country
+    6,  // 2 - Region (state, province, prefecture, etc.)
+    8,  // 3 - Sub-region (county, municipality, etc.)
+    11, // 4 - Town (city, village)
+    13, // 5 - Post code (zip code)
+    15, // 6 - Street
+    16, // 7 - Intersection
+    17, // 8 - Address
+    17  // 9 - Premise
+];
+function placeMarker(location) {
+
+    var marker = new google.maps.Marker({
+        position: location,
+        map: gmap.map/*,
+        animation: google.maps.Animation.DROP*/
+    });
+    gmap.setCenter(location);
+
+}
+function geocodeComplete(result) {
+    if (result.Status.code != 200) {
+        alert('Could not geocode "' + result.name + '"');
+        return;
+    }
+    var placemark = result.Placemark[0]; // Only use first result
+    var accuracy = placemark.AddressDetails.Accuracy;
+    var zoomLevel = accuracyToZoomLevel[accuracy] || 1;
+    var lon = placemark.Point.coordinates[0];
+    var lat = placemark.Point.coordinates[1];
+    gmap.setCenter(new google.maps.LatLng(lat, lon), zoomLevel);
+}
+
+function geocode(location) {
+    geocoder.getLocations(location, geocodeComplete);
+}
+
+google.setOnLoadCallback(showMap);
+</script>
+</head>
+<body>
+    <div id="hd">
+
+        <h1>Draw Geo Fencing Area</h1>
+        <p>Mark two points for the Fencing area</p>
+        <form action="http://maps.google.com/maps" id="geocodeForm">
+            <p>
+                <label for="geocodeInput">Place name: </label>
+                <input type="text" name="q" id="geocodeInput">
+                <!-- "Accessible" version of Google Maps: -->
+
+                <input type="hidden" name="output" value="html">
+                <input type="submit" value="Zoom to place">
+            </p>
+
+        </form>
+
+        <!--<p><strong>Latitude, Longitude:</strong> <span id="latlon"></span></p>-->
+        <p style="color:#FF0000;">Latitude: <span id="lat"></span></p>
+        <p style="color:#FF0000;">Longitude: <span id="lon"></span></p>
+        <p style="color:#FF0000;">Position1:<span id="latlon1"></span><input type="hidden" id="latlon1_Hid"/></p>
+        <p style="color:#FF0000;">Position2:<span id="latlon2"></span><input type="hidden" id="latlon2_Hid"/></p>
+        <p style="color:#FF0000;">Position3:<span id="latlon3"></span><input type="hidden" id="latlon3_Hid"/></p>
+        <p style="color:#FF0000;">Position4:<span id="latlon4"></span><input type="hidden" id="latlon4_Hid"/></p>
+
+        <p style="display: none;"><strong>WKT:</strong> <span id="wkt"></span></p>
+        <p style="display: none;"><strong>Google Maps zoom level:</strong> <span id="zoom"></span></p>
+        <p style="color:#FF0000;" id="timezonep" style="display: none"><strong>Timezone:</strong> <span id="timezone"></span></p>
+        <p id="datetimep" style="display: none"><strong>Local time:</strong> <span id="datetime"></span></p>
+
+        <p>
+            <label for="Btnpos1">Set this is as Point 1</label>
+            <input type="button" name="Btnpos1" id="Btnpos1" Value="Set Point 1" onclick="setPoint1()"/>
+        </p>
+        <p>
+            <label for="Btnpos2">Set this is as Point 2</label>
+            <input type="button" name="Btnpos2" id="Btnpos2" Value="Set Point 2" onclick="setPoint2()"/>
+        </p>
+        <p>
+            <label for="Btnpos3">Set this is as Point 3</label>
+            <input type="button" name="Btnpos3" id="Btnpos3" Value="Set Point 3" onclick="setPoint3()"/>
+        </p>
+        <p>
+            <label for="Btnpos4">Set this is as Point 4</label>
+            <input type="button" name="Btnpos4" id="Btnpos4" Value="Set Point 4" onclick="setPoint4()"/>
+        </p>        
+        <p>
+            <input type="button" name="BtndrawFence" id="BtndrawFence" Value="Draw Fencing Area" onclick="drawFencing()"/>
+        </p>
+    </div>
+    <div id="bd">
+        <div id="gmap"></div>
+        <div id="crosshair"></div>
+    </div>
+
+    <!--<div id="ft">
+        <p><strong>Latitude, Longitude:</strong> <span id="latlon"></span></p>
+        <p><strong>WKT:</strong> <span id="wkt"></span></p>
+        <p><strong>Google Maps zoom level:</strong> <span id="zoom"></span></p>
+        <p id="timezonep" style="display: none"><strong>Timezone:</strong> <span id="timezone"></span></p>
+        <p id="datetimep" style="display: none"><strong>Local time:</strong> <span id="datetime"></span></p>
+    </div>-->
+
+</body>
+</html>
